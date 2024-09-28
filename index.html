@@ -21,14 +21,12 @@
             border-radius: 10px;
             max-width: 500px;
             width: 100%;
-            overflow-y: auto;
-            height: 90vh;
         }
         .control-panel h1, .login-panel h1 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .control-panel input, .login-panel input, .control-panel select {
+        .control-panel input, .login-panel input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -48,105 +46,18 @@
     </style>
 </head>
 <body>
-    <div class="login-panel" id="login-panel">
-        <h1>تسجيل الدخول</h1>
-        <input type="text" id="username" placeholder="اسم المستخدم">
-        <input type="password" id="password" placeholder="كلمة المرور">
-        <button onclick="checkCredentials()">دخول</button>
-    </div>
-
-    <div class="control-panel" id="control-panel" style="display: none;">
+    <div class="control-panel" id="control-panel">
         <h1>لوحة التحكم</h1>
         <form id="controlForm">
-            <!-- تعديل النصوص -->
-            <label>عنوان الموقع:</label>
-            <input type="text" id="title" placeholder="M E R N A H A Z E M">
-
-            <label>النص الفرعي:</label>
-            <input type="text" id="subtitle" placeholder="The Bridal Guru">
-
-            <label>نص الشعار:</label>
-            <input type="text" id="logoText" placeholder="Merna Hazem">
-
-            <label>عنوان قسم من نحن:</label>
-            <input type="text" id="aboutTitle" placeholder="من نحن">
-
-            <label>محتوى قسم من نحن:</label>
-            <input type="text" id="aboutContent" placeholder="نحن نهتم بتحقيق...">
-
-            <label>عنوان قسم الخدمات:</label>
-            <input type="text" id="servicesTitle" placeholder="خدماتنا">
-
-            <label>محتوى قسم الخدمات:</label>
-            <input type="text" id="servicesContent" placeholder="نقدم مجموعة متنوعة...">
-
-            <label>عنوان قسم التواصل:</label>
-            <input type="text" id="contactTitle" placeholder="تواصل معنا">
-
-            <label>محتوى قسم التواصل:</label>
-            <input type="text" id="contactContent" placeholder="للحجز والاستفسار...">
-
-            <label>محتوى التذييل:</label>
-            <input type="text" id="footerContent" placeholder="جميع الحقوق محفوظة...">
-
-            <!-- تعديل الروابط -->
-            <label>رابط تيك توك:</label>
-            <input type="text" id="tiktokLink" placeholder="https://www.tiktok.com/...">
-
-            <label>رابط إنستغرام:</label>
-            <input type="text" id="instagramLink" placeholder="https://www.instagram.com/...">
-
-            <!-- تغيير الألوان -->
-            <label>لون النص الرئيسي:</label>
-            <input type="color" id="mainColor">
-
-            <label>لون النص الفرعي:</label>
-            <input type="color" id="subTitleColor">
-
-            <label>لون شريط التنقل:</label>
-            <input type="color" id="navbarColor">
-
-            <label>لون أيقونات التواصل:</label>
-            <input type="color" id="socialIconColor">
-
-            <label>لون أيقونات التواصل عند المرور:</label>
-            <input type="color" id="socialIconHoverColor">
-
             <!-- رفع صورة الخلفية -->
             <label>صورة الخلفية:</label>
             <input type="file" id="bgImageInput">
-
-            <!-- تغيير الخطوط -->
-            <label>اختر خط النص:</label>
-            <select id="fontStyle">
-                <option value="Cairo">Cairo</option>
-                <option value="Arial">Arial</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Verdana">Verdana</option>
-            </select>
 
             <button type="button" onclick="updatePage()">تحديث الصفحة</button>
         </form>
     </div>
 
     <script>
-        function checkCredentials() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            const correctUsername = 'mernahazem'; // اسم المستخدم الصحيح
-            const correctPassword = 'mernahazem97'; // كلمة المرور الصحيحة
-
-            if (username === correctUsername && password === correctPassword) {
-                document.getElementById('login-panel').style.display = 'none';
-                document.getElementById('control-panel').style.display = 'block';
-            } else {
-                alert('اسم المستخدم أو كلمة المرور غير صحيحة!');
-            }
-        }
-
         function updatePage() {
             const urlParams = new URLSearchParams();
 
@@ -169,26 +80,6 @@
         }
 
         function updateOtherParams(urlParams) {
-            // جمع القيم من الحقول
-            urlParams.set('title', document.getElementById('title').value);
-            urlParams.set('subtitle', document.getElementById('subtitle').value);
-            urlParams.set('logoText', document.getElementById('logoText').value);
-            urlParams.set('aboutTitle', document.getElementById('aboutTitle').value);
-            urlParams.set('aboutContent', document.getElementById('aboutContent').value);
-            urlParams.set('servicesTitle', document.getElementById('servicesTitle').value);
-            urlParams.set('servicesContent', document.getElementById('servicesContent').value);
-            urlParams.set('contactTitle', document.getElementById('contactTitle').value);
-            urlParams.set('contactContent', document.getElementById('contactContent').value);
-            urlParams.set('footerContent', document.getElementById('footerContent').value);
-            urlParams.set('tiktokLink', document.getElementById('tiktokLink').value);
-            urlParams.set('instagramLink', document.getElementById('instagramLink').value);
-            urlParams.set('mainColor', document.getElementById('mainColor').value);
-            urlParams.set('subTitleColor', document.getElementById('subTitleColor').value);
-            urlParams.set('navbarColor', document.getElementById('navbarColor').value);
-            urlParams.set('socialIconColor', document.getElementById('socialIconColor').value);
-            urlParams.set('socialIconHoverColor', document.getElementById('socialIconHoverColor').value);
-            urlParams.set('fontStyle', document.getElementById('fontStyle').value);
-
             // الانتقال إلى الصفحة الرئيسية مع البيانات الجديدة
             window.location.href = `index.html?${urlParams.toString()}`;
         }
